@@ -2,7 +2,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import java.awt.BorderLayout;
-import java.awt.List;
+
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -10,8 +10,6 @@ import javax.swing.JScrollPane;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.MatteBorder;
-import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.border.EtchedBorder;
