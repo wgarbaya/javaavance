@@ -18,10 +18,12 @@ import javax.swing.border.EtchedBorder;
 @SuppressWarnings("serial")
 public class Lister extends JPanel {
 	JPanel panel;
+	Checklistener myListener;
 	/**
 	 * Create the panel.
 	 */
-	public Lister(String ListName,ArrayList<String[]> data) {
+	public Lister(String ListName,DataParser museesData) {
+	    myListener = new Checklistener();
 		setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		setLayout(new BorderLayout(0, 0));
 
@@ -37,22 +39,25 @@ public class Lister extends JPanel {
 		scrollPane.setViewportView(panel);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		feed(data);
+		feed(museesData);
 
 
 	}
 
 /**
  * Feed the list panel with data coming from param
- * @param data String array
+ * @param museesData String array
  */
-	public void feed(ArrayList<String[]> data){
-
+	public void feed(DataParser museesData){
+		
 		ArrayList<JCheckBox> checkboxes = new ArrayList<JCheckBox>();
-		for (int i = 0; i < data.size(); i++) {
-			JCheckBox chckbxNewCheckBox = new JCheckBox(data.get(i)[0]);
+		for (int i = 1; i < museesData.size; i++) {
+			JCheckBox chckbxNewCheckBox = new JCheckBox(museesData.getNameById(i));
+			chckbxNewCheckBox.addActionListener(myListener);
 			panel.add(chckbxNewCheckBox);
+			
 			checkboxes.add(chckbxNewCheckBox); //for further use you add it to the list
+			
 		}
 
 	}

@@ -2,46 +2,77 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class DataParser {
-
+	ArrayList<String[]> data=null;
+	int lat;
+	int lon;
+	int name;
+	int size;
 	/**
-	 * Parse Data from csv file to Arraylist
-	 * @param fileReader of csv file
-	 * @param dataout Parsed data
-	 * @throws FileNotFoundException error if file not Found
+	 * Dataparser for CSV
+	 * @param fileReader file to parse
+	 * @param name row num of mnt
+	 * @param lat row num of latitude
+	 * @param lon row num of longitude
+	 * @throws FileNotFoundException
 	 */
-	public DataParser(FileReader fileReader,ArrayList<String[]> dataout) throws FileNotFoundException
+	public DataParser(FileReader fileReader,int name,int lat,int lon) throws FileNotFoundException
 	{
+
 		BufferedReader CSVFile;
 		String dataRow = null;
+		data = new ArrayList<String[]>() ;
+		this.lat=lat;
+		this.lon=lon;
+		this.name=name;
 		try {
 			CSVFile = new BufferedReader(fileReader);
 			while ((dataRow = CSVFile.readLine()) != null)   {
-				dataout.add(dataRow.split(";"));
+				data.add(dataRow.split(";"));
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		this.size=data.size();
+		System.out.println("created");
 	}
+	/**
+	 * get latitude by Id
+	 * @param id
+	 * @return
+	 */
+	public String getLatById(int id){
+
+		return data.get(id)[lat];
+
+	}
+	/**
+	 * get longitude by Id
+	 * @param id
+	 * @return
+	 */
+	public String getLonById(int id){
+
+		return data.get(id)[lon];
+
+	}
+	/**
+	 * get longitude by Id
+	 * @param id
+	 * @return
+	 */
+	public String getNameById(int id){
+		return data.get(id)[name];
+
+	}
+
 
 	/**
 	 * Data parser tester
 	 * @param args no parameter needed
 	 */
-	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		ArrayList<String[]> data = new ArrayList<String[]>();
-		int i=0;
-		try {
 
-			DataParser dataParser = new DataParser(new FileReader("Musees.csv"), data);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		for (int j = 0; j < data.size(); j++) {
-			System.out.println(data.get(j)[0]);
-		}
 
 	} //main()
 

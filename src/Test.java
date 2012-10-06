@@ -2,10 +2,8 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-
 import javax.swing.JFrame;
- 
+
 
 
 public class Test {
@@ -42,17 +40,19 @@ public class Test {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ArrayList<String[]> data = new ArrayList<String[]>();
-		try {
+		DataParser MuseesData = null;
 
-			@SuppressWarnings("unused")
-			DataParser dataParser = new DataParser(new FileReader("Musees.csv"), data);
+		try {
+			MuseesData = new DataParser(new FileReader("Musees.csv"),0,3,4);
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		Lister lister= new Lister("Musees",data);
+		Lister lister= new Lister("Musees",MuseesData);
 		frame.getContentPane().add(lister, BorderLayout.CENTER);
+
+
+
 	}
 
 }
